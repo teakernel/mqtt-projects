@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # 可选：create, update, validate, none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # 显式指定方言（可选）
+mqtt:
+  username: mqttClient
+  password: 123456
+  broker-url: tcp://127.0.0.1:1883
+  client-id: mqttClient
+  topic: test/topic/#
+  timeout: 100
+  keepalive: 100
+
+logging:
+  logback:
+    rollingpolicy:
+      file-name-pattern: logs/myapp-%d{yyyy-MM-dd}.%i.log  # 按日期和序号分割
+      max-file-size: 10MB  # 单个文件最大10MB
+      total-size-cap: 100MB  # 总日志大小上限
+      max-history: 7  # 保留7天的日志
+  file:
+    name: logs/myapp.log  # 当前日志文件
